@@ -49,14 +49,14 @@
         }
 
         .title {
-            font-size: 2.5rem;
+            font-size: 1.8rem;
             margin-bottom: 10px;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         .subtitle {
-            font-size: 1.1rem;
-            opacity: 0.9;
+            font-size: 0.9rem;
+            opacity: 0.8;
             margin-bottom: 20px;
         }
 
@@ -104,9 +104,14 @@
 
         .instruction {
             text-align: center;
-            font-size: 1.2rem;
+            font-size: 1rem;
             margin-bottom: 30px;
             opacity: 0.9;
+        }
+
+        .instruction h2 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
         }
 
         .cards-grid {
@@ -124,7 +129,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             font-weight: bold;
             text-align: center;
             cursor: pointer;
@@ -446,12 +451,16 @@
         /* モバイル対応 */
         @media (max-width: 768px) {
             .title {
-                font-size: 2rem;
+                font-size: 1.5rem;
+            }
+
+            .instruction h2 {
+                font-size: 1.1rem;
             }
 
             .step-indicator {
                 gap: 10px;
-                font-size: 0.9rem;
+                font-size: 0.8rem;
             }
 
             .step {
@@ -464,7 +473,7 @@
             }
 
             .card {
-                font-size: 0.75rem;
+                font-size: 0.85rem;
                 min-height: 65px;
                 padding: 8px;
             }
@@ -504,7 +513,11 @@
             }
 
             .title {
-                font-size: 1.8rem;
+                font-size: 1.3rem;
+            }
+
+            .instruction h2 {
+                font-size: 1rem;
             }
 
             .cards-grid {
@@ -513,7 +526,7 @@
             }
 
             .card {
-                font-size: 0.7rem;
+                font-size: 0.8rem;
                 min-height: 70px;
                 padding: 6px;
             }
@@ -530,7 +543,6 @@
     <div class="container">
         <div class="header">
             <h1 class="title">✨ 美女と野獣タロット占い ✨</h1>
-            <p class="subtitle">あなたの心に響く、魔法のメッセージをお届けします</p>
         </div>
 
         <div class="main-content">
