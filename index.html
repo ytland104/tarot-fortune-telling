@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✨ 美女と野獣タロット占い ✨</title>
+
+    <!-- PWA設定 -->
+    <meta name="theme-color" content="#6b46c1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="タロット占い">
+    <link rel="manifest" href="manifest.json">
+
+    <!-- アイコン -->
+    <link rel="apple-touch-icon" href="icon-192.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Hiragino Sans', 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .title {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .step-indicator {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+
+        .step {
+            padding: 10px 20px;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .step.active {
+            background: rgba(255, 255, 255, 0.4);
+            transform: scale(1.1);
+        }
+
+        .step.completed {
+            background: rgba(76, 175, 80, 0.8);
+        }
+
+        .card-selection {
+            display: none;
+            width: 100%;
+            max-width: 500px;
+            margin-bottom: 30px;
+        }
+
+        .card-selection.active {
+            display: block;
+        }
+
+        .instruction {
+            text-align: center;
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            aspect-ratio: 2/3;
+            background: linear-gradient(145deg, #8b5cf6, #7c3aed);
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            padding: 8px;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+            min-height: 120px;
+        }
+
+        .card::before {
+            content: '🃏';
+            font-size: 2rem;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .card.card-1::before {
+            content: '🚪';
+        }
+
+        .card.card-2::before {
+            content: '🌹';
+        }
+
+        .card.card-3::before {
+            content: '🔐';
+        }
+
+        .card.card-4::before {
+            content: '🫖';
+        }
+
+        .card.card-5::before {
+            content: '🦁';
+        }
+
+        .card.card-6::before {
+            content: '📜';
+        }
+
+        .card.card-7::before {
+            content: '💃';
+        }
+
+        .card.card-8::before {
+            content: '🏰';
+        }
+
+        .card.card-9::before {
+            content: '🪞';
+        }
+
+        .card.card-10::before {
+            content: '🦋';
+        }
+
+        .card.card-11::before {
+            content: '💔';
+        }
+
+        .card.card-12::before {
+            content: '🌅';
+        }
+
+        .card.card-13::before {
+            content: '💌';
+        }
+
+        .card.card-14::before {
+            content: '💖';
+        }
+
+        .card:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .card:active {
+            transform: translateY(-2px) scale(1.02);
+        }
+
+        .card.selected {
+            background: linear-gradient(145deg, #f59e0b, #d97706);
+            border-color: #fbbf24;
+            animation: pulse 0.5s ease;
+        }
+
+        .selected-cards {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .selected-card {
+            text-align: center;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .selected-card h3 {
+            margin-bottom: 10px;
+            color: #fbbf24;
+        }
+
+        .selected-card .card {
+            cursor: default;
+            background: linear-gradient(145deg, #10b981, #059669);
+        }
+
+        /* 正位置/逆位置選択画面 */
+        .orientation-selection {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px auto;
+            max-width: 500px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+        }
+
+        .orientation-selection h3 {
+            color: #fbbf24;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        .orientation-selection p {
+            margin-bottom: 25px;
+            opacity: 0.9;
+        }
+
+        .orientation-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .orientation-btn {
+            min-width: 150px;
+            padding: 20px 25px;
+            text-align: center;
+            line-height: 1.4;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .orientation-btn small {
+            display: block;
+            margin-top: 8px;
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+
+        .orientation-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .result-section {
+            display: none;
+            width: 100%;
+            max-width: 800px;
+            text-align: center;
+        }
+
+        .result-section.active {
+            display: block;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .result-cards {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 40px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .result-card {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
+            padding: 20px;
+            max-width: 350px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .result-card h3 {
+            color: #fbbf24;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .result-text {
+            text-align: left;
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            min-width: 120px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(145deg, #f59e0b, #d97706);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .start-screen {
+            text-align: center;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .start-screen.hidden {
+            display: none;
+        }
+
+        .description {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* アニメーション */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        /* モバイル対応 */
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2rem;
+            }
+
+            .step-indicator {
+                gap: 10px;
+                font-size: 0.9rem;
+            }
+
+            .step {
+                padding: 8px 15px;
+            }
+
+            .cards-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 10px;
+            }
+
+            .card {
+                font-size: 0.8rem;
+            }
+
+            .result-cards {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 200px;
+            }
+
+            .orientation-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .orientation-btn {
+                width: 250px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+            }
+
+            .title {
+                font-size: 1.8rem;
+            }
+
+            .cards-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="title">✨ 美女と野獣タロット占い ✨</h1>
+            <p class="subtitle">あなたの心に響く、魔法のメッセージをお届けします</p>
+        </div>
+
+        <div class="main-content">
+            <!-- スタート画面 -->
+            <div class="start-screen" id="startScreen">
+                <div class="description">
+                    <p><strong>占い師の方へ</strong></p>
+                    <p>手元にカードをご用意ください。14枚の特別なカードから2枚を選択し、実際のカードの向きに合わせて正位置・逆位置を選択することで、相談者の方への詳細な結果を表示します。</p>
+                    <p>美女と野獣の世界に込められた、愛と成長のメッセージをお届けください。</p>
+                </div>
+                <button class="btn btn-primary" onclick="startReading()">占いを始める ✨</button>
+            </div>
+
+            <!-- ステップインジケーター -->
+            <div class="step-indicator" id="stepIndicator" style="display: none;">
+                <div class="step" id="step1">1枚目を選択</div>
+                <div class="step" id="step2">2枚目を選択</div>
+                <div class="step" id="step3">結果表示</div>
+            </div>
+
+            <!-- カード選択画面（1枚目） -->
+            <div class="card-selection" id="cardSelection1">
+                <div class="instruction">
+                    <h2>1枚目のカード選択</h2>
+                    <p>現在の状況を表すカードをタップしてください</p>
+                    <small style="opacity: 0.8;">※ カード選択後、実際のカードの向きに合わせて正位置/逆位置を選択してください</small>
+                </div>
+                <div class="cards-grid" id="cardsGrid1"></div>
+                <div class="selected-cards" id="selectedCards1"></div>
+            </div>
+
+            <!-- カード選択画面（2枚目） -->
+            <div class="card-selection" id="cardSelection2">
+                <div class="instruction">
+                    <h2>2枚目のカード選択</h2>
+                    <p>アドバイス・未来への展開を表すカードをタップしてください</p>
+                    <small style="opacity: 0.8;">※ カード選択後、実際のカードの向きに合わせて正位置/逆位置を選択してください</small>
+                </div>
+                <div class="cards-grid" id="cardsGrid2"></div>
+                <div class="selected-cards" id="selectedCards2"></div>
+            </div>
+
+            <!-- 結果表示 -->
+            <div class="result-section" id="resultSection">
+                <h2 style="margin-bottom: 30px; font-size: 2rem;">🔮 あなたのタロット占い結果 🔮</h2>
+                <div class="result-cards" id="resultCards"></div>
+                <div class="buttons">
+                    <button class="btn btn-primary" onclick="resetReading()">もう一度占う</button>
+                    <button class="btn btn-secondary" onclick="shareResult()">結果をシェア</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="tarot-data-complete.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
