@@ -182,7 +182,7 @@ const gameState = {
 
 ### 著作権
 このプロジェクトは**附高祭実行委員会**の著作物です。  
-© 2024 附高祭実行委員会 All rights reserved.
+© 2025 附高祭実行委員会 All rights reserved.
 
 ### ライセンス
 このプロジェクトはMITライセンスの下で公開されています。
