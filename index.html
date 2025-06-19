@@ -119,28 +119,28 @@
         .card {
             aspect-ratio: 2/3;
             background: linear-gradient(145deg, #8b5cf6, #7c3aed);
-            border-radius: 10px;
+            border-radius: 8px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             font-weight: bold;
             text-align: center;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            padding: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            padding: 4px;
             border: 2px solid transparent;
             position: relative;
             overflow: hidden;
-            min-height: 120px;
+            min-height: 60px;
         }
 
         .card::before {
             content: '🃏';
-            font-size: 2rem;
-            margin-bottom: 5px;
+            font-size: 1rem;
+            margin-bottom: 2px;
             display: block;
         }
 
@@ -447,12 +447,18 @@
             }
 
             .cards-grid {
-                grid-template-columns: repeat(4, 1fr);
-                gap: 10px;
+                grid-template-columns: repeat(5, 1fr);
+                gap: 8px;
             }
 
             .card {
-                font-size: 0.8rem;
+                font-size: 0.6rem;
+                min-height: 50px;
+            }
+
+            .card::before {
+                font-size: 0.9rem;
+                margin-bottom: 1px;
             }
 
             .result-cards {
@@ -489,7 +495,18 @@
             }
 
             .cards-grid {
-                grid-template-columns: repeat(3, 1fr);
+                grid-template-columns: repeat(4, 1fr);
+                gap: 6px;
+            }
+
+            .card {
+                font-size: 0.5rem;
+                min-height: 40px;
+            }
+
+            .card::before {
+                font-size: 0.8rem;
+                margin-bottom: 0px;
             }
         }
     </style>
