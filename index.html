@@ -550,6 +550,153 @@
                 margin-bottom: 1px;
             }
         }
+
+        /* カード意味ポップアップのスタイル */
+        .card-meaning-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .card-meaning-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(145deg, #667eea, #764ba2);
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 400px;
+            width: 90%;
+            color: white;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            animation: modalSlideIn 0.4s ease;
+        }
+
+        .card-meaning-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .card-meaning-header h3 {
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+            color: #fbbf24;
+        }
+
+        .card-meaning-header .card-name-en {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            font-style: italic;
+        }
+
+        .meaning-section {
+            margin-bottom: 15px;
+        }
+
+        .meaning-section h4 {
+            font-size: 1rem;
+            margin-bottom: 8px;
+            color: #fbbf24;
+        }
+
+        .meaning-text {
+            font-size: 0.9rem;
+            line-height: 1.4;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            border-left: 3px solid #fbbf24;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            justify-content: center;
+        }
+
+        .close-modal-btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            background: linear-gradient(145deg, #f59e0b, #d97706);
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .close-modal-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -60%);
+            }
+
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%);
+            }
+        }
+
+        /* モバイル対応 */
+        @media (max-width: 768px) {
+            .card-meaning-content {
+                padding: 20px;
+                max-width: 350px;
+            }
+
+            .card-meaning-header h3 {
+                font-size: 1.2rem;
+            }
+
+            .meaning-text {
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .card-meaning-content {
+                padding: 15px;
+                max-width: 320px;
+            }
+
+            .card-meaning-header h3 {
+                font-size: 1.1rem;
+            }
+
+            .meaning-text {
+                font-size: 0.8rem;
+            }
+
+            .close-modal-btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+        }
     </style>
 </head>
 
@@ -607,6 +754,32 @@
                     <button class="btn btn-primary" onclick="resetReading()">もう一度占う</button>
                     <button class="btn btn-secondary" onclick="shareResult()">結果をシェア</button>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- カード意味表示ポップアップ -->
+    <div class="card-meaning-modal" id="cardMeaningModal">
+        <div class="card-meaning-content">
+            <div class="card-meaning-header">
+                <h3 id="modalCardName"></h3>
+                <div class="card-name-en" id="modalCardNameEn"></div>
+            </div>
+
+            <div class="meaning-section">
+                <h4>🔮 正位置</h4>
+                <div class="meaning-text" id="modalPositiveMeaning"></div>
+            </div>
+
+            <div class="meaning-section">
+                <h4>🔮 逆位置</h4>
+                <div class="meaning-text" id="modalNegativeMeaning"></div>
+            </div>
+
+            <div class="modal-buttons">
+                <button class="close-modal-btn" onclick="closeCardMeaningModal()">
+                    理解しました ✨
+                </button>
             </div>
         </div>
     </div>

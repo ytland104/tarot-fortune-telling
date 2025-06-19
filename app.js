@@ -148,8 +148,8 @@ function selectCard(card, cardNumber, cardElement) {
     // 視覚的フィードバック
     cardElement.classList.add('selected');
 
-    // 正位置/逆位置選択画面を表示
-    showOrientationSelection(card, cardNumber, cardElement);
+    // カードの意味をポップアップで表示
+    showCardMeaningModal(card, cardNumber, cardElement);
 }
 
 // 正位置/逆位置選択画面を表示
@@ -347,4 +347,50 @@ function vibrate() {
     if (navigator.vibrate) {
         navigator.vibrate(100);
     }
+}
+
+// カード意味ポップアップを表示
+function showCardMeaningModal(card, cardNumber, cardElement) {
+    const modal = document.getElementById('cardMeaningModal');
+    const modalCardName = document.getElementById('modalCardName');
+    const modalCardNameEn = document.getElementById('modalCardNameEn');
+    const modalPositiveMeaning = document.getElementById('modalPositiveMeaning');
+    const modalNegativeMeaning = document.getElementById('modalNegativeMeaning');
+
+    // モーダルの内容を設定
+    modalCardName.textContent = card.nameJp;
+    modalCardNameEn.textContent = card.nameEn;
+    modalPositiveMeaning.textContent = card.positive.meaning;
+    modalNegativeMeaning.textContent = card.negative.meaning;
+
+    // モーダルを表示
+    modal.style.display = 'block';
+
+    // モーダル外をクリックで閉じる
+    modal.onclick = function (event) {
+        if (event.target === modal) {
+            closeCardMeaningModal();
+        }
+    };
+
+    // モーダルのデータを保存（閉じた後に正逆選択を表示するため）
+    modal.dataset.cardId = card.id;
+    modal.dataset.cardNumber = cardNumber;
+}
+
+// カード意味ポップアップを閉じる
+function closeCardMeaningModal() {
+    const modal = document.getElementById('cardMeaningModal');
+    const cardId = modal.dataset.cardId;
+    const cardNumber = modal.dataset.cardNumber;
+
+    // モーダルを非表示
+    modal.style.display = 'none';
+
+    // 選択されたカードを取得
+    const card = tarotCards.find(c => c.id == cardId);
+    const selectedCardElement = document.querySelector(`.card-${cardId}.selected`);
+
+    // 正位置/逆位置選択画面を表示
+    showOrientationSelection(card, parseInt(cardNumber), selectedCardElement);
 } 
