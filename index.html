@@ -656,7 +656,7 @@
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 15px;
-            max-width: 500px;
+            max-width: 600px;
             margin: 0 auto;
         }
 
@@ -816,6 +816,14 @@
                 <div class="age-selection">
                     <h3>相談者の年代を選択してください</h3>
                     <div class="age-buttons">
+                        <button class="age-btn" data-age="elementary" onclick="selectAgeGroup('elementary')">
+                            🌈 小学生<br>
+                            <small>コミカルで楽しいメッセージ</small>
+                        </button>
+                        <button class="age-btn" data-age="middleschool" onclick="selectAgeGroup('middleschool')">
+                            🏫 中学生<br>
+                            <small>中学生活に寄り添うアドバイス</small>
+                        </button>
                         <button class="age-btn" data-age="highschool" onclick="selectAgeGroup('highschool')">
                             🎓 高校生<br>
                             <small>文化祭風の親しみやすいメッセージ</small>

@@ -1,3 +1,99 @@
+<!--
+<style>
+@media print {
+  body {
+    font-family: "Hiragino Sans", "Yu Gothic", sans-serif;
+    font-size: 9px;
+    line-height: 1.3;
+    margin: 0.5in;
+    color: #333;
+  }
+  
+  h1 {
+    font-size: 16px;
+    margin: 8px 0 6px 0;
+    page-break-after: avoid;
+  }
+  
+  h2 {
+    font-size: 14px;
+    margin: 6px 0 4px 0;
+    page-break-after: avoid;
+  }
+  
+  h3 {
+    font-size: 12px;
+    margin: 4px 0 3px 0;
+    page-break-after: avoid;
+  }
+  
+  h4 {
+    font-size: 10px;
+    margin: 3px 0 2px 0;
+    page-break-after: avoid;
+  }
+  
+  p {
+    margin: 2px 0;
+    font-size: 9px;
+  }
+  
+  ul, ol {
+    margin: 2px 0;
+    padding-left: 15px;
+  }
+  
+  li {
+    margin: 1px 0;
+    font-size: 9px;
+  }
+  
+  pre {
+    font-size: 7px;
+    line-height: 1.2;
+    margin: 3px 0;
+    padding: 3px;
+    background: #f5f5f5;
+    border: 1px solid #ddd;
+  }
+  
+  code {
+    font-size: 8px;
+    background: #f5f5f5;
+    padding: 1px 2px;
+  }
+  
+  .mermaid {
+    font-size: 7px;
+    max-width: 100%;
+  }
+  
+  /* 改ページ制御 */
+  .page-break {
+    page-break-before: always;
+  }
+  
+  /* テーブルスタイル */
+  table {
+    font-size: 8px;
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    padding: 2px 4px;
+    border: 1px solid #ddd;
+  }
+  
+  /* 余白調整 */
+  @page {
+    margin: 0.5in;
+    size: A4;
+  }
+}
+</style>
+-->
+
 # タロット占いアプリ プロダクトドキュメント
 
 ## 1. 要件定義
