@@ -393,4 +393,21 @@ function closeCardMeaningModal() {
 
     // 正位置/逆位置選択画面を表示
     showOrientationSelection(card, parseInt(cardNumber), selectedCardElement);
+}
+
+// 年代グループを選択
+function selectAgeGroup(ageGroup) {
+    // 全ての年代ボタンから選択状態を削除
+    document.querySelectorAll('.age-btn').forEach(btn => {
+        btn.classList.remove('selected');
+    });
+
+    // 選択されたボタンに選択状態を追加
+    document.querySelector(`[data-age="${ageGroup}"]`).classList.add('selected');
+
+    // 年代グループを設定
+    setAgeGroup(ageGroup);
+
+    // 占いを始めるボタンを有効化
+    document.getElementById('startReadingBtn').disabled = false;
 } 

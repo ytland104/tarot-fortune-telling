@@ -640,6 +640,72 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
 
+        /* 年代選択のスタイル */
+        .age-selection {
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .age-selection h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: #4a5568;
+        }
+
+        .age-buttons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .age-btn {
+            padding: 20px 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 15px;
+            background: linear-gradient(145deg, #f7fafc, #edf2f7);
+            color: #4a5568;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            font-size: 1rem;
+            line-height: 1.4;
+        }
+
+        .age-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            border-color: #667eea;
+        }
+
+        .age-btn.selected {
+            background: linear-gradient(145deg, #667eea, #764ba2);
+            color: white;
+            border-color: #667eea;
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .age-btn small {
+            display: block;
+            font-size: 0.8rem;
+            opacity: 0.8;
+            margin-top: 5px;
+            font-weight: normal;
+        }
+
+        #startReadingBtn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        #startReadingBtn:disabled:hover {
+            transform: none;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -712,6 +778,20 @@
                 padding: 10px 20px;
                 font-size: 1.1rem;
             }
+
+            .age-buttons {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .age-btn {
+                padding: 15px 10px;
+                font-size: 0.9rem;
+            }
+
+            .age-selection h3 {
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
@@ -730,7 +810,31 @@
                     <p>手元にカードをご用意ください。14枚の特別なカードから2枚を選択し、実際のカードの向きに合わせて正位置・逆位置を選択することで、相談者の方への詳細な結果を表示します。</p>
                     <p>美女と野獣の世界に込められた、愛と成長のメッセージをお届けください。</p>
                 </div>
-                <button class="btn btn-primary" onclick="startReading()">占いを始める ✨</button>
+
+                <!-- 年代選択 -->
+                <div class="age-selection">
+                    <h3>相談者の年代を選択してください</h3>
+                    <div class="age-buttons">
+                        <button class="age-btn" data-age="highschool" onclick="selectAgeGroup('highschool')">
+                            🎓 高校生<br>
+                            <small>文化祭風の親しみやすいメッセージ</small>
+                        </button>
+                        <button class="age-btn" data-age="university" onclick="selectAgeGroup('university')">
+                            📚 大学生<br>
+                            <small>キャンパスライフに寄り添うアドバイス</small>
+                        </button>
+                        <button class="age-btn" data-age="professional" onclick="selectAgeGroup('professional')">
+                            💼 社会人<br>
+                            <small>キャリアと人生設計に関する指針</small>
+                        </button>
+                        <button class="age-btn" data-age="senior" onclick="selectAgeGroup('senior')">
+                            🌸 シニア<br>
+                            <small>人生経験を活かした新たな挑戦</small>
+                        </button>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary" id="startReadingBtn" onclick="startReading()" disabled>占いを始める ✨</button>
             </div>
 
             <!-- ステップインジケーター -->
