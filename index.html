@@ -36,7 +36,7 @@
         .container {
             max-width: 100%;
             margin: 0 auto;
-            padding: 20px;
+            padding: 10px;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -44,13 +44,13 @@
 
         .header {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 10px;
             animation: fadeInDown 1s ease-out;
         }
 
         .title {
-            font-size: 1.8rem;
-            margin-bottom: 10px;
+            font-size: 1.2rem;
+            margin-bottom: 5px;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
 
@@ -68,11 +68,7 @@
         }
 
         .step-indicator {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-bottom: 30px;
-            font-size: 1.1rem;
+            display: none;
         }
 
         .step {
@@ -95,7 +91,7 @@
             display: none;
             width: 100%;
             max-width: 500px;
-            margin-bottom: 30px;
+            margin-bottom: 15px;
         }
 
         .card-selection.active {
@@ -104,21 +100,21 @@
 
         .instruction {
             text-align: center;
-            font-size: 1rem;
-            margin-bottom: 30px;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
             opacity: 0.9;
         }
 
         .instruction h2 {
-            font-size: 1.3rem;
-            margin-bottom: 10px;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
         }
 
         .cards-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
             gap: 15px;
-            margin-bottom: 30px;
+            margin-bottom: 15px;
         }
 
         .card {
@@ -236,7 +232,7 @@
         .selected-cards {
             display: flex;
             gap: 20px;
-            margin-bottom: 30px;
+            margin-bottom: 15px;
             flex-wrap: wrap;
             justify-content: center;
         }
@@ -261,8 +257,8 @@
         .orientation-selection {
             background: rgba(255, 255, 255, 0.15);
             border-radius: 15px;
-            padding: 30px;
-            margin: 30px auto;
+            padding: 20px;
+            margin: 15px auto;
             max-width: 500px;
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
@@ -273,35 +269,37 @@
 
         .orientation-selection h3 {
             color: #fbbf24;
-            margin-bottom: 15px;
-            font-size: 1.4rem;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
         }
 
         .orientation-selection p {
-            margin-bottom: 25px;
+            margin-bottom: 15px;
             opacity: 0.9;
+            font-size: 0.9rem;
         }
 
         .orientation-buttons {
             display: flex;
-            gap: 20px;
+            gap: 15px;
             justify-content: center;
             flex-wrap: wrap;
         }
 
         .orientation-btn {
-            min-width: 150px;
-            padding: 20px 25px;
+            min-width: 120px;
+            padding: 15px 20px;
             text-align: center;
-            line-height: 1.4;
-            border-radius: 15px;
+            line-height: 1.3;
+            border-radius: 12px;
             transition: all 0.3s ease;
+            font-size: 0.9rem;
         }
 
         .orientation-btn small {
             display: block;
-            margin-top: 8px;
-            font-size: 0.85rem;
+            margin-top: 5px;
+            font-size: 0.8rem;
             opacity: 0.8;
         }
 
@@ -451,20 +449,21 @@
         /* モバイル対応 */
         @media (max-width: 768px) {
             .title {
-                font-size: 1.5rem;
+                font-size: 1rem;
             }
 
             .instruction h2 {
-                font-size: 1.1rem;
+                font-size: 1rem;
             }
 
-            .step-indicator {
-                gap: 10px;
-                font-size: 0.8rem;
+            .orientation-selection h3 {
+                font-size: 1rem;
             }
 
-            .step {
-                padding: 8px 15px;
+            .orientation-btn {
+                min-width: 100px;
+                padding: 12px 15px;
+                font-size: 0.85rem;
             }
 
             .cards-grid {
@@ -498,26 +497,41 @@
             }
 
             .orientation-buttons {
-                flex-direction: column;
-                align-items: center;
+                flex-direction: row;
+                gap: 10px;
             }
 
             .orientation-btn {
-                width: 250px;
+                width: auto;
+                flex: 1;
             }
         }
 
         @media (max-width: 480px) {
             .container {
-                padding: 15px;
+                padding: 8px;
             }
 
             .title {
-                font-size: 1.3rem;
+                font-size: 0.9rem;
             }
 
             .instruction h2 {
-                font-size: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .orientation-selection {
+                padding: 15px;
+                margin: 10px auto;
+            }
+
+            .orientation-selection h3 {
+                font-size: 0.9rem;
+            }
+
+            .orientation-btn {
+                padding: 10px 12px;
+                font-size: 0.8rem;
             }
 
             .cards-grid {
