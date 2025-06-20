@@ -105,9 +105,6 @@ function showCardSelection(cardNumber) {
 
 // カードグリッドを生成
 function generateCardGrid(cardNumber) {
-    console.log('カードグリッド生成開始:', cardNumber);
-    console.log('使用するタロットカード:', tarotCards.length, '枚');
-
     const gridElement = document.getElementById(`cardsGrid${cardNumber}`);
     const shuffledCards = shuffleCards();
 
@@ -117,8 +114,6 @@ function generateCardGrid(cardNumber) {
         const cardElement = createCardElement(card, cardNumber);
         gridElement.appendChild(cardElement);
     });
-
-    console.log('カードグリッド生成完了:', gridElement.children.length, '個のカード要素');
 }
 
 // カード要素を作成
@@ -402,8 +397,6 @@ function closeCardMeaningModal() {
 
 // 年代グループを選択
 function selectAgeGroup(ageGroup) {
-    console.log('年代選択:', ageGroup);
-
     // 全ての年代ボタンから選択状態を削除
     document.querySelectorAll('.age-btn').forEach(btn => {
         btn.classList.remove('selected');
@@ -414,9 +407,6 @@ function selectAgeGroup(ageGroup) {
 
     // 年代グループを設定
     setAgeGroup(ageGroup);
-
-    console.log('現在の年代:', currentAgeGroup);
-    console.log('タロットカード数:', tarotCards.length);
 
     // 占いを始めるボタンを有効化
     document.getElementById('startReadingBtn').disabled = false;
