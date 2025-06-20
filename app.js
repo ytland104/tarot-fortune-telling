@@ -15,8 +15,8 @@ function initializeApp() {
     registerServiceWorker();
     setupInstallPrompt();
 
-    // ランダムなカード配置を生成
-    shuffleCards();
+    // 固定カード配置（実際のカードレイアウトと同じ）
+    // 初期化時の特別な処理は不要
 }
 
 // PWA: Service Worker登録
@@ -52,14 +52,10 @@ function showInstallButton(deferredPrompt) {
     console.log('アプリをホーム画面に追加できます');
 }
 
-// カードをシャッフル
-function shuffleCards() {
-    const cards = [...tarotCards];
-    for (let i = cards.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [cards[i], cards[j]] = [cards[j], cards[i]];
-    }
-    return cards;
+// カードを固定順序で返す（実際のカード配置と同じ）
+function getFixedCards() {
+    // ID順で固定配置（実際のカード配置に合わせて）
+    return [...tarotCards].sort((a, b) => a.id - b.id);
 }
 
 // 占いを開始
@@ -103,14 +99,14 @@ function showCardSelection(cardNumber) {
     generateCardGrid(cardNumber);
 }
 
-// カードグリッドを生成
+// カードグリッドを生成（固定配置）
 function generateCardGrid(cardNumber) {
     const gridElement = document.getElementById(`cardsGrid${cardNumber}`);
-    const shuffledCards = shuffleCards();
+    const fixedCards = getFixedCards();
 
     gridElement.innerHTML = '';
 
-    shuffledCards.forEach(card => {
+    fixedCards.forEach(card => {
         const cardElement = createCardElement(card, cardNumber);
         gridElement.appendChild(cardElement);
     });
