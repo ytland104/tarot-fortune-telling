@@ -400,9 +400,9 @@
         }
 
         .description {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            margin-bottom: 40px;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            margin-bottom: 20px;
             opacity: 0.9;
             max-width: 600px;
             margin-left: auto;
@@ -452,6 +452,26 @@
                 font-size: 1rem;
             }
 
+            .description {
+                font-size: 0.8rem;
+                margin-bottom: 15px;
+            }
+
+            .age-selection h3 {
+                font-size: 0.9rem;
+                margin-bottom: 12px;
+            }
+
+            .age-btn {
+                padding: 12px 10px;
+                font-size: 0.85rem;
+            }
+
+            .age-btn small {
+                font-size: 0.7rem;
+                margin-top: 2px;
+            }
+
             .instruction h2 {
                 font-size: 1rem;
             }
@@ -494,6 +514,10 @@
 
             .btn {
                 width: 200px;
+            }
+
+            #startReadingBtn {
+                margin-top: 10px !important;
             }
 
             .orientation-buttons {
@@ -647,8 +671,8 @@
         }
 
         .age-selection h3 {
-            font-size: 1.2rem;
-            margin-bottom: 20px;
+            font-size: 1rem;
+            margin-bottom: 15px;
             color: #4a5568;
         }
 
@@ -661,17 +685,17 @@
         }
 
         .age-btn {
-            padding: 20px 15px;
+            padding: 15px 12px;
             border: 2px solid #e2e8f0;
-            border-radius: 15px;
+            border-radius: 12px;
             background: linear-gradient(145deg, #f7fafc, #edf2f7);
             color: #4a5568;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s ease;
             text-align: center;
-            font-size: 1rem;
-            line-height: 1.4;
+            font-size: 0.9rem;
+            line-height: 1.3;
         }
 
         .age-btn:hover {
@@ -689,9 +713,9 @@
 
         .age-btn small {
             display: block;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             opacity: 0.8;
-            margin-top: 5px;
+            margin-top: 3px;
             font-weight: normal;
         }
 
@@ -779,18 +803,29 @@
                 font-size: 1.1rem;
             }
 
-            .age-buttons {
-                grid-template-columns: 1fr;
-                gap: 12px;
-            }
-
-            .age-btn {
-                padding: 15px 10px;
-                font-size: 0.9rem;
+            .description {
+                font-size: 0.75rem;
+                margin-bottom: 10px;
             }
 
             .age-selection h3 {
-                font-size: 1rem;
+                font-size: 0.85rem;
+                margin-bottom: 10px;
+            }
+
+            .age-buttons {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+            }
+
+            .age-btn {
+                padding: 10px 8px;
+                font-size: 0.8rem;
+            }
+
+            .age-btn small {
+                font-size: 0.65rem;
+                margin-top: 1px;
             }
         }
     </style>
@@ -808,8 +843,7 @@
             <div class="start-screen" id="startScreen">
                 <div class="description">
                     <p><strong>占い師の方へ</strong></p>
-                    <p>手元にカードをご用意ください。14枚の特別なカードから2枚を選択し、実際のカードの向きに合わせて正位置・逆位置を選択することで、相談者の方への詳細な結果を表示します。</p>
-                    <p>美女と野獣の世界に込められた、愛と成長のメッセージをお届けください。</p>
+                    <p>14枚のカードから2枚選択し、実際の向きに合わせて正位置・逆位置を選択してください。</p>
                 </div>
 
                 <!-- 年代選択 -->
@@ -843,7 +877,8 @@
                     </div>
                 </div>
 
-                <button class="btn btn-primary" id="startReadingBtn" onclick="startReading()" disabled>占いを始める ✨</button>
+                <button class="btn btn-primary" id="startReadingBtn" onclick="startReading()" disabled
+                    style="margin-top: 15px;">占いを始める ✨</button>
             </div>
 
             <!-- ステップインジケーター -->
